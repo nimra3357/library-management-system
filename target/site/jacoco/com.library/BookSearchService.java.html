@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BookSearchService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Library Management Testing Framework</a> &gt; <a href="index.source.html" class="el_package">com.library</a> &gt; <span class="el_source">BookSearchService.java</span></div><h1>BookSearchService.java</h1><pre class="source lang-java linenums">package com.library;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Provides search functionality across the library book catalog.
+ */
+public class BookSearchService {
+
+    private final LibraryService libraryService;
+
+<span class="fc" id="L13">    public BookSearchService(LibraryService libraryService) {</span>
+<span class="pc bpc" id="L14" title="1 of 2 branches missed.">        if (libraryService == null)</span>
+<span class="nc" id="L15">            throw new IllegalArgumentException(&quot;LibraryService cannot be null&quot;);</span>
+<span class="fc" id="L16">        this.libraryService = libraryService;</span>
+<span class="fc" id="L17">    }</span>
+
+    public List&lt;Book&gt; searchByTitle(String keyword) {
+<span class="pc bpc" id="L20" title="1 of 4 branches missed.">        if (keyword == null || keyword.trim().isEmpty())</span>
+<span class="fc" id="L21">            throw new IllegalArgumentException(&quot;Search keyword cannot be empty&quot;);</span>
+
+<span class="fc" id="L23">        String kw = keyword.trim().toLowerCase();</span>
+<span class="fc" id="L24">        return libraryService.getAllBooks().stream()</span>
+<span class="fc" id="L25">                .filter(b -&gt; b.getTitle().toLowerCase().contains(kw))</span>
+<span class="fc" id="L26">                .collect(Collectors.toList());</span>
+    }
+
+    public List&lt;Book&gt; searchByAuthor(String author) {
+<span class="pc bpc" id="L30" title="1 of 4 branches missed.">        if (author == null || author.trim().isEmpty())</span>
+<span class="fc" id="L31">            throw new IllegalArgumentException(&quot;Author name cannot be empty&quot;);</span>
+
+<span class="fc" id="L33">        String a = author.trim().toLowerCase();</span>
+<span class="fc" id="L34">        return libraryService.getAllBooks().stream()</span>
+<span class="fc" id="L35">                .filter(b -&gt; b.getAuthor().toLowerCase().contains(a))</span>
+<span class="fc" id="L36">                .collect(Collectors.toList());</span>
+    }
+
+    public List&lt;Book&gt; searchByGenre(String genre) {
+<span class="pc bpc" id="L40" title="2 of 4 branches missed.">        if (genre == null || genre.trim().isEmpty())</span>
+<span class="nc" id="L41">            throw new IllegalArgumentException(&quot;Genre cannot be empty&quot;);</span>
+
+<span class="fc" id="L43">        return libraryService.getAllBooks().stream()</span>
+<span class="fc" id="L44">                .filter(b -&gt; b.getGenre().equalsIgnoreCase(genre.trim()))</span>
+<span class="fc" id="L45">                .collect(Collectors.toList());</span>
+    }
+
+    public List&lt;Book&gt; searchAvailableByTitle(String keyword) {
+<span class="fc" id="L49">        return searchByTitle(keyword).stream()</span>
+<span class="fc" id="L50">                .filter(Book::isAvailable)</span>
+<span class="fc" id="L51">                .collect(Collectors.toList());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

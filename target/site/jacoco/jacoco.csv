@@ -1,0 +1,7 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Library Management Testing Framework,com.library,BookSearchService,10,105,5,9,2,23,5,10,0,8
+Library Management Testing Framework,com.library,LibraryService,5,122,3,15,1,25,3,15,0,9
+Library Management Testing Framework,com.library,FineCalculator,11,35,1,7,4,8,4,6,3,3
+Library Management Testing Framework,com.library,Member,13,96,4,14,2,24,5,13,1,8
+Library Management Testing Framework,com.library,LoanService,27,123,7,19,5,33,7,11,0,5
+Library Management Testing Framework,com.library,Book,10,89,2,14,1,24,3,14,1,8

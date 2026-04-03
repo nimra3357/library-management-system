@@ -1,0 +1,12 @@
+com/library/BookSearchServiceTest.class
+com/library/SlowSuiteTest.class
+com/library/FastSuiteTest.class
+com/library/MemberTest.class
+com/library/FullSuiteTest.class
+com/library/IntegrationSuiteTest.class
+com/library/BookTest.class
+com/library/FineCalculatorTest.class
+com/library/LibraryServiceTest.class
+com/library/LoanServiceTest.class
+com/library/ExcelDrivenBookTest.class
+com/library/DataDrivenFineTest.class

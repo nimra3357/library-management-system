@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LibraryService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Library Management Testing Framework</a> &gt; <a href="index.source.html" class="el_package">com.library</a> &gt; <span class="el_source">LibraryService.java</span></div><h1>LibraryService.java</h1><pre class="source lang-java linenums">package com.library;
+
+import java.util.*;
+
+/**
+ * Core service for managing the book inventory in the library.
+ */
+<span class="fc" id="L8">public class LibraryService {</span>
+
+<span class="fc" id="L10">    private final Map&lt;String, Book&gt; bookCatalog = new HashMap&lt;&gt;();</span>
+
+    public void addBook(Book book) {
+<span class="fc bfc" id="L13" title="All 2 branches covered.">        if (book == null)</span>
+<span class="fc" id="L14">            throw new IllegalArgumentException(&quot;Book cannot be null&quot;);</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">        if (bookCatalog.containsKey(book.getId()))</span>
+<span class="fc" id="L16">            throw new IllegalStateException(&quot;Book with ID '&quot; + book.getId() + &quot;' already exists&quot;);</span>
+<span class="fc" id="L17">        bookCatalog.put(book.getId(), book);</span>
+<span class="fc" id="L18">    }</span>
+
+    public void removeBook(String bookId) {
+<span class="pc bpc" id="L21" title="2 of 4 branches missed.">        if (bookId == null || bookId.trim().isEmpty())</span>
+<span class="nc" id="L22">            throw new IllegalArgumentException(&quot;Book ID cannot be null or empty&quot;);</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        if (!bookCatalog.containsKey(bookId))</span>
+<span class="fc" id="L24">            throw new NoSuchElementException(&quot;Book with ID '&quot; + bookId + &quot;' not found&quot;);</span>
+<span class="fc" id="L25">        bookCatalog.remove(bookId);</span>
+<span class="fc" id="L26">    }</span>
+
+    public Book findById(String bookId) {
+<span class="pc bpc" id="L29" title="1 of 4 branches missed.">        if (bookId == null || bookId.trim().isEmpty())</span>
+<span class="fc" id="L30">            throw new IllegalArgumentException(&quot;Book ID cannot be null or empty&quot;);</span>
+<span class="fc" id="L31">        return bookCatalog.get(bookId);</span>
+    }
+
+    public List&lt;Book&gt; getAllBooks() {
+<span class="fc" id="L35">        return new ArrayList&lt;&gt;(bookCatalog.values());</span>
+    }
+
+    public List&lt;Book&gt; getAvailableBooks() {
+<span class="fc" id="L39">        List&lt;Book&gt; available = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        for (Book b : bookCatalog.values()) {</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">            if (b.isAvailable()) available.add(b);</span>
+<span class="fc" id="L42">        }</span>
+<span class="fc" id="L43">        return available;</span>
+    }
+
+<span class="fc" id="L46">    public int getTotalCount()     { return bookCatalog.size(); }</span>
+<span class="fc" id="L47">    public boolean isEmpty()       { return bookCatalog.isEmpty(); }</span>
+<span class="fc" id="L48">    public boolean exists(String id) { return bookCatalog.containsKey(id); }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
