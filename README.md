@@ -153,9 +153,3 @@ should_<ExpectedBehavior>_when_<Condition>
 Example: `should_ThrowException_when_BookIdIsNull`
 
 ---
-
-## Author
-
-- **Course:** CS – Software Testing  
-- **Semester:** Spring 2026  
-- **University:** NUCES Chiniot-Faisalabad
